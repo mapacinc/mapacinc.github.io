@@ -71,6 +71,27 @@ h2.sec{font-size:28px;margin:0 0 10px} h3{font-size:20px;margin:22px 0 6px}
 .sumrow:first-of-type{border-top:0}
 .sumrow b{white-space:nowrap}
 .sumrow span{text-align:right}
+.election-summary{margin:28px 0 36px;padding:24px;border:1px solid var(--line);border-radius:16px;background:#f8f9fb}
+.election-summary h2{margin:0 0 8px}
+.summary-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.summary-metric{padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;text-align:center}
+.summary-metric strong{display:block;color:var(--bg2);font-size:34px;line-height:1.1}
+.summary-metric span{font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.summary-chart{margin:20px 0;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.summary-chart h3{margin:0 0 12px}
+.summary-bar-row{display:grid;grid-template-columns:100px minmax(0,1fr) 28px;gap:10px;align-items:center;margin:10px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px}
+.summary-bar-track{height:14px;overflow:hidden;border-radius:999px;background:#e6e9ef}
+.summary-bar-fill{display:block;height:100%;border-radius:999px;background:var(--gold)}
+.summary-bar-fill.house{background:var(--bg2)}
+.winner-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0}
+.winner-card{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fff}
+.winner-card img{display:block;width:100%;height:180px;object-fit:cover;object-position:center 25%;background:#e6e9ef}
+.winner-card div{padding:12px}
+.winner-card h4{margin:0 0 3px;font-size:17px}
+.winner-card p{margin:4px 0;font-size:13px}
+.winner-credit{font-family:Arial,Helvetica,sans-serif;color:var(--mut);font-size:11px!important;line-height:1.4}
+.winner-credit a{color:var(--mut)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .stsec{margin:26px 0} .stsec h3{border-bottom:1px solid var(--line);padding-bottom:6px}
 .raceblock{margin:16px 0} .raceblock h4{margin:0 0 8px;font-size:17px}
 .candrow{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}
@@ -98,7 +119,7 @@ footer.site{border-top:0;background:var(--bg2)}
 .footer-in a{color:var(--gold)}
 .footer-in p{margin:6px 0}
 .disclaimer{border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin-top:14px}
-@media(max-width:760px){.hero h1{font-size:32px}.stats{grid-template-columns:repeat(2,1fr)}.cards,.keygrid{grid-template-columns:1fr}}
+@media(max-width:760px){.hero h1{font-size:32px}.stats{grid-template-columns:repeat(2,1fr)}.cards,.keygrid{grid-template-columns:1fr}.winner-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 a.banner{display:block;line-height:0;background:var(--bg2);text-align:center}a.banner img{width:100%;max-width:1080px;height:auto;display:block;margin:0 auto}.footnav{white-space:nowrap;overflow-x:auto;padding-bottom:4px}.footnav a{white-space:nowrap}
 .page{display:none}
 .page.active{display:block}
@@ -119,7 +140,8 @@ a.stat{color:inherit;text-decoration:none}
 a.stat:hover{border-color:var(--gold)}
 a.sumrow{color:inherit;text-decoration:none}
 a.sumrow:hover{color:var(--bg2)}
-@media(max-width:760px){.volform{grid-template-columns:1fr}}</style>
+@media(max-width:760px){.volform{grid-template-columns:1fr}}
+@media(max-width:480px){.election-summary{padding:16px}.summary-metrics{grid-template-columns:1fr}.winner-grid{grid-template-columns:1fr}.winner-card{display:grid;grid-template-columns:100px minmax(0,1fr)}.winner-card img{height:100%;min-height:132px}.summary-bar-row{grid-template-columns:78px minmax(0,1fr) 24px;gap:7px}}</style>
 <noscript><style>.page{display:block!important}</style></noscript>
 <link rel="stylesheet" href="mapac-header.css">
   </head>
@@ -170,14 +192,65 @@ a.sumrow:hover{color:var(--bg2)}
       <a class="stat" href="#/results" data-show="oppose"><b>19</b><span>Opposed</span></a>
       <a class="stat" href="#/results" data-show="muslim"><b>11</b><span>Muslim candidates</span></a>
     </div>
-      <div class="ressummary" id="homeSummary"></div>
+      <section class="election-summary" id="homeSummary" aria-labelledby="results-summary-heading">
+        <p class="kicker">2026 U.S. Midterms · Reported results</p>
+        <h2 class="sec" id="results-summary-heading">2026 Election Results Summary</h2>
+        <p><a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">CAIR California's post-election roundup</a> names eight Muslim candidates elected to Congress, including Abdul El-Sayed, the first Muslim elected to the U.S. Senate. Photo credits link to each image's source and reuse details.</p>
+        <div class="summary-metrics" aria-label="Congressional results at a glance">
+          <div class="summary-metric"><strong>8</strong><span>Congressional winners</span></div>
+          <div class="summary-metric"><strong>1</strong><span>U.S. Senate</span></div>
+          <div class="summary-metric"><strong>7</strong><span>U.S. House</span></div>
+        </div>
+        <figure class="summary-chart" aria-labelledby="winner-chart-title">
+          <figcaption><h3 id="winner-chart-title">Where the eight congressional winners will serve</h3></figcaption>
+          <div class="summary-bar-row"><span>U.S. Senate</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill" style="width:12.5%"></span></div><strong>1</strong></div>
+          <div class="summary-bar-row"><span>U.S. House</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill house" style="width:87.5%"></span></div><strong>7</strong></div>
+          <p class="note">Each bar shows its share of the eight reported congressional winners.</p>
+        </figure>
+        <h3>Muslim candidates elected to Congress</h3>
+        <ul class="winner-grid" aria-label="Eight Muslim congressional winners reported by CAIR California">
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_5_%28cropped%29.jpg/500px-Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_5_%28cropped%29.jpg" alt="Abdul El-Sayed at a voter meet-and-greet" loading="lazy" decoding="async">
+            <div><h4>Abdul El-Sayed</h4><p>U.S. Senator-elect · Michigan</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_5_(cropped).jpg">Photo: Conlan Houston</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Adam_Hamawy_in_2025.jpg" alt="Adam Hamawy in 2025" loading="lazy" decoding="async">
+            <div><h4>Adam Hamawy</h4><p>U.S. Representative-elect · New Jersey's 12th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Adam_Hamawy_in_2025.jpg">Photo: Office of Rep. Bonnie Watson Coleman</a> · Public domain</p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Aisha_Wahab%2C_official_portrait_-_2026.jpg/500px-Aisha_Wahab%2C_official_portrait_-_2026.jpg" alt="Official portrait of Aisha Wahab" loading="lazy" decoding="async">
+            <div><h4>Aisha Wahab</h4><p>U.S. Representative-elect · California's 14th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Aisha_Wahab,_official_portrait_-_2026.jpg">Photo: U.S. House of Representatives</a> · Public domain</p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Darializa_Avila_Chevalier_during_interview_on_Secretos_CEO.jpg/500px-Darializa_Avila_Chevalier_during_interview_on_Secretos_CEO.jpg" alt="Darializa Avila Chevalier during an interview" loading="lazy" decoding="async">
+            <div><h4>Darializa Avila Chevalier</h4><p>U.S. Representative-elect · New York's 13th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Darializa_Avila_Chevalier_during_interview_on_Secretos_CEO.jpg">Photo: A LO CLARO / Indhira Baez</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Rep._Lateefah_Simon_Official_Portrait.jpg/500px-Rep._Lateefah_Simon_Official_Portrait.jpg" alt="Official portrait of Representative Lateefah Simon" loading="lazy" decoding="async">
+            <div><h4>Lateefah Simon</h4><p>Re-elected U.S. Representative · California's 12th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Rep._Lateefah_Simon_Official_Portrait.jpg">Photo: Ike Hayman / House Creative Services</a> · Public domain</p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Andre_Carson_116th_Congress.jpg/500px-Andre_Carson_116th_Congress.jpg" alt="Portrait of Representative André Carson" loading="lazy" decoding="async">
+            <div><h4>André Carson</h4><p>Re-elected U.S. Representative · Indiana's 7th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Andre_Carson_116th_Congress.jpg">Photo: U.S. Congress</a> · Public domain</p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Ilhan_Omar%2C_official_portrait%2C_116th_Congress_%28cropped%29_A.jpg/500px-Ilhan_Omar%2C_official_portrait%2C_116th_Congress_%28cropped%29_A.jpg" alt="Official portrait of Representative Ilhan Omar" loading="lazy" decoding="async">
+            <div><h4>Ilhan Omar</h4><p>Re-elected U.S. Representative · Minnesota's 5th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Ilhan_Omar,_official_portrait,_116th_Congress_(cropped)_A.jpg">Photo: Kristie Boyd / U.S. House Office of Photography</a> · Public domain</p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Tlaib_Rashida_119th_Congress_%283x4_cropped%29.jpg/500px-Tlaib_Rashida_119th_Congress_%283x4_cropped%29.jpg" alt="Portrait of Representative Rashida Tlaib" loading="lazy" decoding="async">
+            <div><h4>Rashida Tlaib</h4><p>Re-elected U.S. Representative · Michigan's 12th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Tlaib_Rashida_119th_Congress_(3x4_cropped).jpg">Photo: Brian Thorpe / House Creative Services</a> · Public domain</p></div>
+          </li>
+        </ul>
+        <p class="note">Scope: all eight Muslim congressional winners named in CAIR California's November 7 report. This is not a complete list of Muslim winners in every 2026 U.S. state and local race; CAIR California also identifies additional state and local winners in its <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">broader election roundup</a>. Reported winners remain subject to official certification.</p>
+        <p class="note">Results and Muslim-candidate identification: CAIR California's <a href="https://ca.cair.com/updates/final-election-results-anti-muslim-hate-loses/">final election results report</a> and <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">post-election roundup</a>.</p>
+      </section>
       <div class="aboutblock">
     <h2 class="sec">About MAPAC</h2>
     <p class="lead">The Muslim American Political Action Committee (MAPAC) is a 501(c)(4) nonprofit organization built by and for Muslim Americans. Here is what our nonprofit status means.</p>
     <p>A 501(c)(4) is a mission-driven nonprofit — not a super PAC. Super PACs can raise unlimited funds for independent expenditures, subject to applicable law. Our organization focuses on community engagement, voter education, and political advocacy. We don't buy elections. We organize people.</p>
     <h3>What we do</h3>
     <p><strong>Civic and political engagement.</strong> As a social-welfare organization, we can and do advocate directly for our community — meeting with elected officials, speaking out on legislation, registering voters, hosting candidate forums, and publishing voter guides. When candidates earn our trust through their record, we endorse them; when they don't, we say so. Holding power accountable is part of our mission, not a side project.</p>
-    <p><strong>Media and public voice.</strong> We work with journalists and media outlets to present honest perspectives on issues affecting Muslims, to answer misinformation, and to make sure a Muslim voice is part of the story. Our long-running program MAPAC-Live TV has brought Muslim and non-Muslim guests together for open conversation on local, national, and international issues.</p>
     <h3>Our roots</h3>
     <p>MAPAC is a registered political action committee — filed with the Federal Election Commission and the Commonwealth of Virginia. That registration is a public promise: our finances are a matter of public record, our endorsements are made in the open, and we are accountable to the law and to the community we serve.</p>
     <p>We were founded in 2002, in the years after September 11, when Muslim Americans faced a wave of suspicion and backlash. Our founders believed the answer was not to retreat, but to participate — to build real relationships with elected officials, to register voters, and to make sure our community shows up, every election.</p>
@@ -220,7 +293,10 @@ a.sumrow:hover{color:var(--bg2)}
     </div>
     <div class="rescounts" id="resCounts"></div>
     <p class="note" id="resNote"></p>
-     <div class="ressummary" id="resSummary"></div>
+     <div class="ressummary" id="resSummary">
+       <h3>2026 Results Summary</h3>
+       <p>CAIR California reports eight Muslim congressional winners: one U.S. Senator-elect and seven U.S. Representatives. <a href="#/home">See the source-linked photo infographic.</a></p>
+     </div>
     <div id="resList"></div>
   </section>
 
@@ -392,19 +468,6 @@ function renderCounts(){
   });
   $('resCounts').textContent = called+' of '+total+' races called · Democratic wins '+wins.D+' · Republican wins '+wins.R+' · Other wins '+wins.O+' · '+(total-called)+' not yet called';
   $('resNote').textContent = 'Results are unofficial until certification, around December 7, 2026. ' + (DATA.statusNote||'');
-  const _t = list => { let w=0,l=0,p=0; list.forEach(c=>{ if(c.result==='won')w++; else if(c.result==='lost')l++; else p++; }); return [w,l,p]; };
-  const _pi = c => { const m = String(c.score||'').match(/([+\-\u2212\u2013]?)\s*(\d+)/); return !!m && (m[1]==='-'||m[1]==='\u2212'||m[1]==='\u2013'); };
-  const _mu = _t(DATA.candidates.filter(c => (c.cat||'').split(' ').includes('muslim')));
-  const _en = _t(DATA.candidates.filter(c => c.rating==='e'));
-  const _op = _t(DATA.candidates.filter(c => c.rating==='o'));
-  const _piT = _t(DATA.candidates.filter(_pi));
-  const _piR = DATA.candidates.filter(c => _pi(c) && c.rating==='o' && c.result==='lost').map(c => esc(c.display)+' ('+c.race+')');
-  $('resSummary').innerHTML = '<h3>2026 Results Summary</h3>'
-    + '<a class="sumrow" href="#/results" data-show="muslim"><b>Muslim candidates</b><span>'+_mu[0]+' won \u00b7 '+_mu[1]+' lost \u00b7 '+_mu[2]+' still to be called (of 11)</span></a>'
-    + '<a class="sumrow" href="#/results" data-show="endorse"><b>Endorsed candidates</b><span>'+_en[0]+' won \u00b7 '+_en[1]+' lost \u00b7 '+_en[2]+' still to be called (of 120)</span></a>'
-    + '<a class="sumrow" href="#/results" data-show="oppose"><b>Opposed (red-line) candidates</b><span>'+_op[0]+' won \u00b7 '+_op[1]+' lost \u00b7 '+_op[2]+' still to be called (of 19)</span></a>'
-    + '<a class="sumrow" href="#/results" data-show="proisrael"><b>Pro-Israel candidates (VoteLog score below 0)</b><span>'+_piT[1]+' lost, including '+_piR.length+' red-line candidate'+(_piR.length===1?'':'s')+(_piR.length?' \u2014 '+_piR.join(', '):'')+'; '+_piT[0]+' won \u00b7 '+_piT[2]+' still to be called (of '+(_piT[0]+_piT[1]+_piT[2])+')</span></a>';
-  const hs = $('homeSummary'); if(hs) hs.innerHTML = $('resSummary').innerHTML;
 }
 function scoreChip(s){
   if(!s) return '';
