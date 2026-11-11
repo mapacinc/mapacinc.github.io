@@ -82,10 +82,12 @@ h2.sec{font-size:28px;margin:0 0 10px} h3{font-size:20px;margin:22px 0 6px}
 .summary-bar-row{display:grid;grid-template-columns:100px minmax(0,1fr) 28px;gap:10px;align-items:center;margin:10px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px}
 .summary-bar-track{height:14px;overflow:hidden;border-radius:999px;background:#e6e9ef}
 .summary-bar-fill{display:block;height:100%;border-radius:999px;background:var(--gold)}
-.summary-bar-fill.house{background:var(--bg2)}
+.summary-bar-fill.state{background:var(--bg2)}
+.summary-bar-fill.local{background:var(--green)}
 .winner-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0}
 .winner-card{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fff}
 .winner-card img{display:block;width:100%;height:180px;object-fit:cover;object-position:center 25%;background:#e6e9ef}
+.winner-placeholder{display:flex;height:180px;align-items:center;justify-content:center;background:#e6e9ef;color:var(--bg2);font-family:Arial,Helvetica,sans-serif;font-size:30px;font-weight:700}
 .winner-card div{padding:12px}
 .winner-card h4{margin:0 0 3px;font-size:17px}
 .winner-card p{margin:4px 0;font-size:13px}
@@ -141,7 +143,7 @@ a.stat:hover{border-color:var(--gold)}
 a.sumrow{color:inherit;text-decoration:none}
 a.sumrow:hover{color:var(--bg2)}
 @media(max-width:760px){.volform{grid-template-columns:1fr}}
-@media(max-width:480px){.election-summary{padding:16px}.summary-metrics{grid-template-columns:1fr}.winner-grid{grid-template-columns:1fr}.winner-card{display:grid;grid-template-columns:100px minmax(0,1fr)}.winner-card img{height:100%;min-height:132px}.summary-bar-row{grid-template-columns:78px minmax(0,1fr) 24px;gap:7px}}</style>
+@media(max-width:480px){.election-summary{padding:16px}.summary-metrics{grid-template-columns:1fr}.winner-grid{grid-template-columns:1fr}.winner-card{display:grid;grid-template-columns:100px minmax(0,1fr)}.winner-card img,.winner-placeholder{height:100%;min-height:132px}.summary-bar-row{grid-template-columns:78px minmax(0,1fr) 24px;gap:7px}}</style>
 <noscript><style>.page{display:block!important}</style></noscript>
 <link rel="stylesheet" href="mapac-header.css">
   </head>
@@ -195,20 +197,21 @@ a.sumrow:hover{color:var(--bg2)}
       <section class="election-summary" id="homeSummary" aria-labelledby="results-summary-heading">
         <p class="kicker">2026 U.S. Midterms · Reported results</p>
         <h2 class="sec" id="results-summary-heading">2026 Election Results Summary</h2>
-        <p><a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">CAIR California's post-election roundup</a> names eight Muslim candidates elected to Congress, including Abdul El-Sayed, the first Muslim elected to the U.S. Senate. Photo credits link to each image's source and reuse details.</p>
-        <div class="summary-metrics" aria-label="Congressional results at a glance">
-          <div class="summary-metric"><strong>8</strong><span>Congressional winners</span></div>
-          <div class="summary-metric"><strong>1</strong><span>U.S. Senate</span></div>
-          <div class="summary-metric"><strong>7</strong><span>U.S. House</span></div>
+        <p><a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">CAIR California's post-election roundup</a> names 13 Muslim winners across federal, state, and local offices. Photo credits link to each image's source and reuse details.</p>
+        <div class="summary-metrics" aria-label="Winners named in the CAIR California roundup">
+          <div class="summary-metric"><strong>13</strong><span>Winners named</span></div>
+          <div class="summary-metric"><strong>8</strong><span>Federal · 1 Senate, 7 House</span></div>
+          <div class="summary-metric"><strong>5</strong><span>State and local</span></div>
         </div>
         <figure class="summary-chart" aria-labelledby="winner-chart-title">
-          <figcaption><h3 id="winner-chart-title">Where the eight congressional winners will serve</h3></figcaption>
-          <div class="summary-bar-row"><span>U.S. Senate</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill" style="width:12.5%"></span></div><strong>1</strong></div>
-          <div class="summary-bar-row"><span>U.S. House</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill house" style="width:87.5%"></span></div><strong>7</strong></div>
-          <p class="note">Each bar shows its share of the eight reported congressional winners.</p>
+          <figcaption><h3 id="winner-chart-title">Office levels for the 13 winners named in the roundup</h3></figcaption>
+          <div class="summary-bar-row"><span>Federal</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill" style="width:61.54%"></span></div><strong>8</strong></div>
+          <div class="summary-bar-row"><span>State</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill state" style="width:30.77%"></span></div><strong>4</strong></div>
+          <div class="summary-bar-row"><span>Local</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill local" style="width:7.69%"></span></div><strong>1</strong></div>
+          <p class="note">Each bar shows its share of the named winners, not a national total.</p>
         </figure>
         <h3>Muslim candidates elected to Congress</h3>
-        <ul class="winner-grid" aria-label="Eight Muslim congressional winners reported by CAIR California">
+        <ul class="winner-grid" aria-label="Eight Muslim congressional winners named by CAIR California">
           <li class="winner-card">
             <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_5_%28cropped%29.jpg/500px-Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_5_%28cropped%29.jpg" alt="Abdul El-Sayed at a voter meet-and-greet" loading="lazy" decoding="async">
             <div><h4>Abdul El-Sayed</h4><p>U.S. Senator-elect · Michigan</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_5_(cropped).jpg">Photo: Conlan Houston</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p></div>
@@ -242,8 +245,34 @@ a.sumrow:hover{color:var(--bg2)}
             <div><h4>Rashida Tlaib</h4><p>Re-elected U.S. Representative · Michigan's 12th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Tlaib_Rashida_119th_Congress_(3x4_cropped).jpg">Photo: Brian Thorpe / House Creative Services</a> · Public domain</p></div>
           </li>
         </ul>
-        <p class="note">Scope: all eight Muslim congressional winners named in CAIR California's November 7 report. This is not a complete list of Muslim winners in every 2026 U.S. state and local race; CAIR California also identifies additional state and local winners in its <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">broader election roundup</a>. Reported winners remain subject to official certification.</p>
-        <p class="note">Results and Muslim-candidate identification: CAIR California's <a href="https://ca.cair.com/updates/final-election-results-anti-muslim-hate-loses/">final election results report</a> and <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">post-election roundup</a>.</p>
+        <h3>Muslim candidates elected to state office</h3>
+        <ul class="winner-grid" aria-label="Four Muslim state-office winners named by CAIR California">
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Aber_Kawas_20260612.png/500px-Aber_Kawas_20260612.png" alt="Portrait of New York State Senate winner Aber Kawas" loading="lazy" decoding="async">
+            <div><h4>Aber Kawas</h4><p>New York State Senator-elect · District 12</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Aber_Kawas_20260612.png">Photo: Sumanah</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Nabeela_Syed_2023.jpg" alt="Portrait of Illinois State Senate winner Nabeela Syed" loading="lazy" decoding="async">
+            <div><h4>Nabeela Syed</h4><p>Illinois State Senator-elect · District 26</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Nabeela_Syed_2023.jpg">Photo: Voice of America</a> · Public domain</p></div>
+          </li>
+          <li class="winner-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Ruwa_Romman.jpg/500px-Ruwa_Romman.jpg" alt="Official portrait of Georgia State Senate winner Ruwa Romman" loading="lazy" decoding="async">
+            <div><h4>Ruwa Romman</h4><p>Georgia State Senator-elect · District 7</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Ruwa_Romman.jpg">Photo: Georgia General Assembly</a> · Public domain</p></div>
+          </li>
+          <li class="winner-card">
+            <div class="winner-placeholder" aria-hidden="true">LN</div>
+            <div><h4>Leila Namvar</h4><p>California Assemblymember-elect · District 47</p><p class="winner-credit">No Wikimedia Commons portrait located.</p></div>
+          </li>
+        </ul>
+        <h3>Muslim candidate elected to local office</h3>
+        <ul class="winner-grid" aria-label="One Muslim local-office winner named by CAIR California">
+          <li class="winner-card">
+            <div class="winner-placeholder" aria-hidden="true">JS</div>
+            <div><h4>Joe Salas</h4><p>San Bernardino City Councilmember-elect</p><p class="winner-credit">No Wikimedia Commons portrait located.</p></div>
+          </li>
+        </ul>
+        <p class="note">Coverage: all 13 Muslim winners explicitly named in CAIR California's <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">post-election roundup</a> — 8 federal, 4 state, and 1 local. The roundup also refers to “many more” winners and does not provide a complete nationwide inventory. We could not verify a complete list across all U.S. races from the available sources, so these 13 are not presented as the national total. Reported winners remain subject to official certification.</p>
+        <p class="note">Results and public Muslim-candidate identification: CAIR California's <a href="https://ca.cair.com/updates/final-election-results-anti-muslim-hate-loses/">final election results report</a> and <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">post-election roundup</a>.</p>
       </section>
       <div class="aboutblock">
     <h2 class="sec">About MAPAC</h2>
