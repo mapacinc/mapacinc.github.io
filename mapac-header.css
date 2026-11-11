@@ -1,0 +1,352 @@
+:root {
+  --mapac-navy: #1b2a4a;
+  --mapac-navy-dark: #12203b;
+  --mapac-gold: #c9a227;
+  --mapac-gold-dark: #a8851f;
+  --mapac-gold-soft: #e6c566;
+  --mapac-line: #dcdcdc;
+  --mapac-muted: #5f6b6b;
+  scroll-padding-top: 88px;
+}
+
+.mapac-skip {
+  position: absolute;
+  z-index: 100;
+  top: -60px;
+  left: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--mapac-gold);
+  color: var(--mapac-navy-dark);
+  font: 700 14px Arial, Helvetica, sans-serif;
+}
+
+.mapac-skip:focus {
+  top: 10px;
+}
+
+.mapac-util {
+  background: var(--mapac-navy-dark);
+  color: #fff;
+  font: 13px/1.3 Arial, Helvetica, sans-serif;
+}
+
+.mapac-util .mapac-wrap {
+  display: flex;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 9px 20px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mapac-util a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.mapac-util a:hover {
+  color: var(--mapac-gold-soft);
+}
+
+.mapac-news a {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mapac-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--mapac-gold);
+}
+
+.mapac-contact {
+  display: flex;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+header.site {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  border-bottom: 1px solid var(--mapac-line);
+  background: #fff;
+  color: var(--mapac-navy);
+  transition: box-shadow 0.2s;
+}
+
+header.site.scrolled {
+  box-shadow: 0 4px 18px rgba(18, 32, 59, 0.12);
+}
+
+.mapac-bar {
+  display: flex;
+  max-width: 1160px;
+  min-height: 76px;
+  margin: 0 auto;
+  padding: 0 20px;
+  align-items: center;
+  gap: 22px;
+}
+
+.mapac-logo {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 13px;
+  color: var(--mapac-navy);
+  text-decoration: none;
+}
+
+.mapac-mark {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: none;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--mapac-navy);
+  color: var(--mapac-gold);
+  font: 700 28px Georgia, "Times New Roman", serif;
+}
+
+.mapac-brand-name {
+  display: block;
+  font: 700 22px/1 Georgia, "Times New Roman", serif;
+  letter-spacing: 0.6px;
+}
+
+.mapac-brand-name small {
+  display: block;
+  margin-top: 5px;
+  color: var(--mapac-muted);
+  font: 700 10.5px/1.25 Arial, Helvetica, sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+header.site nav.mapac-nav {
+  position: static;
+  z-index: auto;
+  display: block;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+header.site nav.mapac-nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+  list-style: none;
+}
+
+header.site nav.mapac-nav a {
+  position: relative;
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--mapac-navy);
+  font: 700 14.5px Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+header.site nav.mapac-nav a::after {
+  position: absolute;
+  right: 14px;
+  bottom: 2px;
+  left: 14px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--mapac-gold);
+  content: "";
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+header.site nav.mapac-nav a:hover::after,
+header.site nav.mapac-nav a.active::after {
+  transform: scaleX(1);
+}
+
+header.site nav.mapac-nav a:hover,
+header.site nav.mapac-nav a.active {
+  background: #f6f2e3;
+  color: var(--mapac-navy);
+}
+
+header.site .mapac-cta {
+  display: inline-flex;
+  min-height: 46px;
+  padding: 11px 26px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--mapac-gold);
+  border-radius: 999px;
+  background: var(--mapac-gold);
+  color: var(--mapac-navy);
+  font: 700 15px Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+header.site .mapac-cta:hover {
+  border-color: var(--mapac-gold-dark);
+  background: var(--mapac-gold-dark);
+  color: #fff;
+}
+
+.mapac-burger {
+  display: none;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--mapac-line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.mapac-burger span,
+.mapac-burger span::before,
+.mapac-burger span::after {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--mapac-navy);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.mapac-burger span::before,
+.mapac-burger span::after {
+  position: absolute;
+  left: 0;
+  content: "";
+}
+
+.mapac-burger span::before {
+  top: -7px;
+}
+
+.mapac-burger span::after {
+  top: 7px;
+}
+
+.mapac-burger[aria-expanded="true"] span {
+  background: transparent;
+}
+
+.mapac-burger[aria-expanded="true"] span::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mapac-burger[aria-expanded="true"] span::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .mapac-util .mapac-wrap {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .mapac-contact {
+    display: none;
+  }
+
+  .mapac-bar {
+    gap: 12px;
+  }
+
+  .mapac-burger {
+    display: inline-flex;
+  }
+
+  header.site nav.mapac-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
+    border-bottom: 1px solid var(--mapac-line);
+    background: #fff;
+    box-shadow: 0 14px 24px rgba(18, 32, 59, 0.14);
+    transition: max-height 0.25s ease, visibility 0.25s;
+  }
+
+  header.site nav.mapac-nav.open {
+    max-height: 80vh;
+    visibility: visible;
+  }
+
+  header.site nav.mapac-nav ul {
+    flex-direction: column;
+    padding: 6px 20px 16px;
+    gap: 0;
+  }
+
+  header.site nav.mapac-nav li {
+    border-bottom: 1px solid #eee;
+  }
+
+  header.site nav.mapac-nav a {
+    padding: 16px 4px;
+    border-radius: 0;
+    font-size: 17px;
+  }
+
+  header.site nav.mapac-nav a::after {
+    right: auto;
+    bottom: 9px;
+    left: 4px;
+    width: 36px;
+  }
+
+  header.site nav.mapac-nav a:hover,
+  header.site nav.mapac-nav a.active {
+    background: transparent;
+  }
+
+  header.site .mapac-cta {
+    min-height: 44px;
+    margin-left: auto;
+    padding: 9px 18px;
+    font-size: 14px;
+  }
+
+  .mapac-brand-name {
+    font-size: 19px;
+  }
+
+  .mapac-brand-name small {
+    font-size: 9.5px;
+    letter-spacing: 0.8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mapac-skip,
+  .mapac-burger span,
+  .mapac-burger span::before,
+  .mapac-burger span::after,
+  header.site,
+  header.site nav.mapac-nav,
+  header.site nav.mapac-nav a::after {
+    transition: none;
+  }
+}
