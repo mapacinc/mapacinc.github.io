@@ -71,13 +71,16 @@ h2.sec{font-size:28px;margin:0 0 10px} h3{font-size:20px;margin:22px 0 6px}
 .sumrow:first-of-type{border-top:0}
 .sumrow b{white-space:nowrap}
 .sumrow span{text-align:right}
-.election-summary{margin:28px 0 36px;padding:24px;border:1px solid var(--line);border-radius:16px;background:#f8f9fb}
+.election-summary{margin:0 0 36px;padding:24px;border:1px solid var(--bg2);border-radius:16px;background:var(--bg2);color:#fff}
 .election-summary h2{margin:0 0 8px}
+.election-summary>.kicker{color:#e6c566}
+.election-summary>p a{color:#e6c566}
+.election-summary>.note{color:#d8deea}
 .summary-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
-.summary-metric{padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;text-align:center}
+.summary-metric{padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);text-align:center}
 .summary-metric strong{display:block;color:var(--bg2);font-size:34px;line-height:1.1}
 .summary-metric span{font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
-.summary-chart{margin:20px 0;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.summary-chart{margin:20px 0;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
 .summary-chart h3{margin:0 0 12px}
 .summary-bar-row{display:grid;grid-template-columns:100px minmax(0,1fr) 28px;gap:10px;align-items:center;margin:10px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px}
 .summary-bar-track{height:14px;overflow:hidden;border-radius:999px;background:#e6e9ef}
@@ -85,7 +88,7 @@ h2.sec{font-size:28px;margin:0 0 10px} h3{font-size:20px;margin:22px 0 6px}
 .summary-bar-fill.state{background:var(--bg2)}
 .summary-bar-fill.local{background:var(--green)}
 .winner-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0}
-.winner-card{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fff}
+.winner-card{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
 .winner-card img{display:block;width:100%;height:180px;object-fit:cover;object-position:center 25%;background:#e6e9ef}
 .winner-placeholder{display:flex;height:180px;align-items:center;justify-content:center;background:#e6e9ef;color:var(--bg2);font-family:Arial,Helvetica,sans-serif;font-size:30px;font-weight:700}
 .winner-card div{padding:12px}
@@ -176,40 +179,9 @@ a.sumrow:hover{color:var(--bg2)}
 
 <main id="main">
   <section class="page hero" id="home">
-    <p class="kicker">2026 Election Results · November 3, 2026</p>
-    <h1>How MAPAC rates candidates</h1>
-     <p class="lead">Every candidate for U.S. Senate and U.S. House was rated on their public record — their words, their votes, and their courage. Every candidate gets one of three findings:</p>
-     <div class="cards">
-       <div class="card"><h3>ENDORSE — Path A</h3><p><strong>A1:</strong> the candidate states that genocide is happening in Gaza. <strong>A2:</strong> the candidate supports an arms embargo or ending U.S. military aid, with a stated humanitarian or legal reason.</p><p><a href="#/results" data-show="endorse">See the 120 endorsed &rarr;</a></p></div>
-       <div class="card"><h3>OPPOSE — Red line</h3><p>Documented bigotry, with a dated source, means automatic opposition — and it overrides any endorsement path.</p><p><a href="#/results" data-show="oppose">See the 19 opposed &rarr;</a></p></div>
-       <div class="card"><h3>NO FINDING</h3><p>When there is not enough public record to rate a candidate, we say so. No finding is not an endorsement, and it is not an opposition.</p><p><a href="#/results" data-show="nofinding">See candidates with no finding &rarr;</a></p></div>
-     </div>
-     <p class="note">AIPAC funding is flagged on a candidate&rsquo;s record, never scored. We verify candidate identities, voting records, and public statements before publishing — every rating is sourced and dated.</p>
-    <div class="btnrow">       <a class="btn" href="#/results">See the 2026 results</a>       <a class="btn ghost" href="#/take-action">Take action</a>     </div>
-     <form class="homesearch" id="homeSearch"><input id="homeQ" type="text" placeholder="Search a candidate by name, e.g. Jen Kiggans" aria-label="Search candidates"><button class="btn" type="submit">Search candidates</button></form>
-    <div class="stats" aria-label="2026 report at a glance">
-      <a class="stat" href="#/results" data-show="all"><b>470</b><span>Races rated</span></a>
-      <a class="stat" href="#/results" data-show="all"><b>1,330</b><span>Candidates</span></a>
-      <a class="stat" href="#/results" data-show="endorse"><b>120</b><span>Endorsed</span></a>
-      <a class="stat" href="#/results" data-show="oppose"><b>19</b><span>Opposed</span></a>
-      <a class="stat" href="#/results" data-show="muslim"><b>11</b><span>Muslim candidates</span></a>
-    </div>
       <section class="election-summary" id="homeSummary" aria-labelledby="results-summary-heading">
         <p class="kicker">2026 U.S. Midterms · Reported results</p>
         <h2 class="sec" id="results-summary-heading">2026 Election Results Summary</h2>
-        <p><a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">CAIR California's post-election roundup</a> names 13 Muslim winners across federal, state, and local offices. Photo credits link to each image's source and reuse details.</p>
-        <div class="summary-metrics" aria-label="Winners named in the CAIR California roundup">
-          <div class="summary-metric"><strong>13</strong><span>Winners named</span></div>
-          <div class="summary-metric"><strong>8</strong><span>Federal · 1 Senate, 7 House</span></div>
-          <div class="summary-metric"><strong>5</strong><span>State and local</span></div>
-        </div>
-        <figure class="summary-chart" aria-labelledby="winner-chart-title">
-          <figcaption><h3 id="winner-chart-title">Office levels for the 13 winners named in the roundup</h3></figcaption>
-          <div class="summary-bar-row"><span>Federal</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill" style="width:61.54%"></span></div><strong>8</strong></div>
-          <div class="summary-bar-row"><span>State</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill state" style="width:30.77%"></span></div><strong>4</strong></div>
-          <div class="summary-bar-row"><span>Local</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill local" style="width:7.69%"></span></div><strong>1</strong></div>
-          <p class="note">Each bar shows its share of the named winners, not a national total.</p>
-        </figure>
         <h3>Muslim candidates elected to Congress</h3>
         <ul class="winner-grid" aria-label="Eight Muslim congressional winners named by CAIR California">
           <li class="winner-card">
@@ -245,6 +217,19 @@ a.sumrow:hover{color:var(--bg2)}
             <div><h4>Rashida Tlaib</h4><p>Re-elected U.S. Representative · Michigan's 12th District</p><p class="winner-credit"><a href="https://commons.wikimedia.org/wiki/File:Tlaib_Rashida_119th_Congress_(3x4_cropped).jpg">Photo: Brian Thorpe / House Creative Services</a> · Public domain</p></div>
           </li>
         </ul>
+        <p><a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">CAIR California's post-election roundup</a> names 13 Muslim winners across federal, state, and local offices. Photo credits link to each image's source and reuse details.</p>
+        <div class="summary-metrics" aria-label="Winners named in the CAIR California roundup">
+          <div class="summary-metric"><strong>13</strong><span>Winners named</span></div>
+          <div class="summary-metric"><strong>8</strong><span>Federal · 1 Senate, 7 House</span></div>
+          <div class="summary-metric"><strong>5</strong><span>State and local</span></div>
+        </div>
+        <figure class="summary-chart" aria-labelledby="winner-chart-title">
+          <figcaption><h3 id="winner-chart-title">Office levels for the 13 winners named in the roundup</h3></figcaption>
+          <div class="summary-bar-row"><span>Federal</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill" style="width:61.54%"></span></div><strong>8</strong></div>
+          <div class="summary-bar-row"><span>State</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill state" style="width:30.77%"></span></div><strong>4</strong></div>
+          <div class="summary-bar-row"><span>Local</span><div class="summary-bar-track" aria-hidden="true"><span class="summary-bar-fill local" style="width:7.69%"></span></div><strong>1</strong></div>
+          <p class="note">Each bar shows its share of the named winners, not a national total.</p>
+        </figure>
         <h3>Muslim candidates elected to state office</h3>
         <ul class="winner-grid" aria-label="Four Muslim state-office winners named by CAIR California">
           <li class="winner-card">
@@ -274,6 +259,26 @@ a.sumrow:hover{color:var(--bg2)}
         <p class="note">Coverage: all 13 Muslim winners explicitly named in CAIR California's <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">post-election roundup</a> — 8 federal, 4 state, and 1 local. The roundup also refers to “many more” winners and does not provide a complete nationwide inventory. We could not verify a complete list across all U.S. races from the available sources, so these 13 are not presented as the national total. Reported winners remain subject to official certification.</p>
         <p class="note">Results and public Muslim-candidate identification: CAIR California's <a href="https://ca.cair.com/updates/final-election-results-anti-muslim-hate-loses/">final election results report</a> and <a href="https://ca.cair.com/updates/american-muslims-leila-namvar-and-joe-salas-win-elections-in-socal/">post-election roundup</a>.</p>
       </section>
+
+    <p class="kicker">2026 Election Results · November 3, 2026</p>
+    <h1>How MAPAC rates candidates</h1>
+     <p class="lead">Every candidate for U.S. Senate and U.S. House was rated on their public record — their words, their votes, and their courage. Every candidate gets one of three findings:</p>
+     <div class="cards">
+       <div class="card"><h3>ENDORSE — Path A</h3><p><strong>A1:</strong> the candidate states that genocide is happening in Gaza. <strong>A2:</strong> the candidate supports an arms embargo or ending U.S. military aid, with a stated humanitarian or legal reason.</p><p><a href="#/results" data-show="endorse">See the 120 endorsed &rarr;</a></p></div>
+       <div class="card"><h3>OPPOSE — Red line</h3><p>Documented bigotry, with a dated source, means automatic opposition — and it overrides any endorsement path.</p><p><a href="#/results" data-show="oppose">See the 19 opposed &rarr;</a></p></div>
+       <div class="card"><h3>NO FINDING</h3><p>When there is not enough public record to rate a candidate, we say so. No finding is not an endorsement, and it is not an opposition.</p><p><a href="#/results" data-show="nofinding">See candidates with no finding &rarr;</a></p></div>
+     </div>
+     <p class="note">AIPAC funding is flagged on a candidate&rsquo;s record, never scored. We verify candidate identities, voting records, and public statements before publishing — every rating is sourced and dated.</p>
+    <div class="btnrow">       <a class="btn" href="#/results">See the 2026 results</a>       <a class="btn ghost" href="#/take-action">Take action</a>     </div>
+     <form class="homesearch" id="homeSearch"><input id="homeQ" type="text" placeholder="Search a candidate by name, e.g. Jen Kiggans" aria-label="Search candidates"><button class="btn" type="submit">Search candidates</button></form>
+    <div class="stats" aria-label="2026 report at a glance">
+      <a class="stat" href="#/results" data-show="all"><b>470</b><span>Races rated</span></a>
+      <a class="stat" href="#/results" data-show="all"><b>1,330</b><span>Candidates</span></a>
+      <a class="stat" href="#/results" data-show="endorse"><b>120</b><span>Endorsed</span></a>
+      <a class="stat" href="#/results" data-show="oppose"><b>19</b><span>Opposed</span></a>
+      <a class="stat" href="#/results" data-show="muslim"><b>11</b><span>Muslim candidates</span></a>
+    </div>
+
       <div class="aboutblock">
     <h2 class="sec">About MAPAC</h2>
     <p class="lead">The Muslim American Political Action Committee (MAPAC) is a 501(c)(4) nonprofit organization built by and for Muslim Americans. Here is what our nonprofit status means.</p>
