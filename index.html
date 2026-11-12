@@ -42,7 +42,7 @@ h2.sec{font-size:28px;margin:0 0 10px} h3{font-size:20px;margin:22px 0 6px}
 .note{font-size:14px;color:var(--mut)}
 .badge{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin:0 4px 4px 0}
 .badge.e{background:var(--green);color:#000} .badge.o{background:var(--red);color:#000}
-.badge.n{background:#6b7785;color:#000} .badge.mu{background:#1f6f4a;color:#fff}
+.badge.n{background:#6b7785;color:#000} .finding-label{color:#000} .badge.mu{background:#1f6f4a;color:#fff}
 .badge.rl{background:#7d2a20;color:#fff} .badge.a1,.badge.a2{background:var(--bg2);color:#fff}
 .pill{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
 .pill.pending{background:#ececec;color:#555} .pill.leading{background:var(--gold);color:var(--bg2)}
@@ -266,7 +266,7 @@ a.sumrow:hover{color:var(--bg2)}
      <div class="cards">
        <div class="card"><h3>ENDORSE — Path A</h3><p><strong>A1:</strong> the candidate states that genocide is happening in Gaza. <strong>A2:</strong> the candidate supports an arms embargo or ending U.S. military aid, with a stated humanitarian or legal reason.</p><p><a href="#/results" data-show="endorse">See the 120 endorsed &rarr;</a></p></div>
        <div class="card"><h3>OPPOSE — Red line</h3><p>Documented bigotry, with a dated source, means automatic opposition — and it overrides any endorsement path.</p><p><a href="#/results" data-show="oppose">See the 19 opposed &rarr;</a></p></div>
-       <div class="card"><h3>NO FINDING</h3><p>When there is not enough public record to rate a candidate, we say so. No finding is not an endorsement, and it is not an opposition.</p><p><a href="#/results" data-show="nofinding">See candidates with no finding &rarr;</a></p></div>
+       <div class="card"><h3 class="finding-label">NO FINDING</h3><p>When there is not enough public record to rate a candidate, we say so. No finding is not an endorsement, and it is not an opposition.</p><p><a href="#/results" data-show="nofinding">See candidates with no finding &rarr;</a></p></div>
      </div>
      <p class="note">AIPAC funding is flagged on a candidate&rsquo;s record, never scored. We verify candidate identities, voting records, and public statements before publishing — every rating is sourced and dated.</p>
     <div class="btnrow">       <a class="btn" href="#/results">See the 2026 results</a>       <a class="btn ghost" href="#/take-action">Take action</a>     </div>
@@ -458,7 +458,7 @@ function nameMatch(name,q){
   return normName(q).split(' ').every(w => n.some(x => x.indexOf(w) === 0 || x === w));
 }
 function badges(c){
-  let h = '<span class="badge '+RATING[c.rating][1]+'">'+RATING[c.rating][0]+'</span>';
+  let h = '<span class="badge '+RATING[c.rating][1]+(c.rating==='n'?' finding-label':'')+'">'+RATING[c.rating][0]+'</span>';
   const cats = (c.cat||'').split(' ').filter(Boolean);
   if(cats.includes('muslim')) h += '<span class="badge mu">MUSLIM CANDIDATE</span>';
   if(cats.includes('redline')) h += '<span class="badge rl">RED LINE</span>';
