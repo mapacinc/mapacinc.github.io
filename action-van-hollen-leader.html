@@ -318,7 +318,8 @@ $("targetList").addEventListener("click",e=>{
 });
 renderTargets();
 function go(id){
-  document.querySelectorAll("main section.step").forEach(s=>s.hidden = s.id!==id);
+  const campaign=["intro","targetsSec","shareSec","sourcesSec"];
+  document.querySelectorAll("main section.step").forEach(s=>{ s.hidden = id==="intro" ? !campaign.includes(s.id) : s.id!==id; });
   const st=$("steps");
   if(!FLOW.ids.includes(id)){ st.innerHTML=""; }
   else { const i=FLOW.ids.indexOf(id); st.innerHTML=FLOW.labels.map((l,n)=>`<li class="${n<i?"done":n===i?"on":""}" ${n===i?'aria-current="step"':""}>${l}</li>`).join(""); }
