@@ -84,6 +84,17 @@ button:disabled{opacity:.55;cursor:wait}
 .keypts li{margin-bottom:8px}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:999px;font-family:Arial,sans-serif;font-size:14px;opacity:0;pointer-events:none}
 .toast.show{opacity:1}
+.targets{display:grid;gap:8px}
+.trow{display:flex;gap:8px 12px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+.trow .nm{font-weight:700;color:var(--navy);font-family:Arial,Helvetica,sans-serif;font-size:15px}
+.trow .st{color:var(--muted);font-family:Arial,Helvetica,sans-serif;font-size:14px}
+.trow .kind{color:var(--muted);font-family:Arial,Helvetica,sans-serif;font-size:13px}
+.badge{display:inline-block;font:700 12px Arial,Helvetica,sans-serif;padding:2px 8px;border-radius:999px;border:1px solid var(--gold);color:var(--goldtext)}
+.badge.elect{background:#f8f6ef}
+.badge.pending{border-color:var(--err);color:var(--err)}
+.trow .sp{flex:1}
+.trow a.clink{font:700 14px Arial,Helvetica,sans-serif;white-space:nowrap}
+.trow button{padding:8px 16px;font-size:14px;min-height:38px}
 footer{background:var(--navy);color:rgba(255,255,255,.85);padding:26px 0 40px;font-size:13px;margin-top:20px}
 footer a{color:#e6c566}
 [hidden]{display:none!important}
@@ -130,13 +141,21 @@ footer a{color:#e6c566}
     <ul class="keypts" id="keypts" style="margin-top:14px"></ul>
   </div>
   <div class="actions"><button id="startBtn">Start &mdash; find my senators</button></div>
-  <p class="note" style="margin-top:14px">A note on timing: if your state flipped a Senate seat, the directory below may still list the outgoing senator until the new Congress data is published in January. The new senators-elect take office January 3, 2027.</p>
+  <p class="note" style="margin-top:14px">A note on timing: the list below covers all 56 Democratic senators voting on December 1 — including the newly elected senators, who take office January 3, 2027. Alaska&rsquo;s race is still uncalled; Mary Peltola is listed as pending.</p>
+</section>
+
+<!-- TARGETS: all 56 senators voting -->
+<section class="step" id="targetsSec">
+  <h2>The 56 senators voting on December 1</h2>
+  <p class="lead">Only the 56 Democratic senators and senators-elect vote in this secret ballot. Your own senators are the ones to contact first — press Start above and the page finds them for you. You can also contact any senator on this list directly: each link opens their official contact page in a new tab. A web page cannot fill in a Senate contact form for you — copy your letter first, then paste it into the form.</p>
+  <div class="targets" id="targetList"></div>
+  <p class="note">Status: <span class="badge">Sitting</span> in office now &middot; <span class="badge elect">Senator-elect</span> takes office January 3, 2027 &middot; <span class="badge pending">Pending</span> Alaska&rsquo;s race is still uncalled. &ldquo;Senate contact form&rdquo; is the senator&rsquo;s official senate.gov form; &ldquo;campaign&rdquo; is the senator-elect&rsquo;s campaign site (no Senate office yet); &ldquo;current office&rdquo; is the office they hold today.</p>
 </section>
 
 <!-- STEP 1: address -->
 <section class="step" id="a1" hidden>
   <h2>Your details</h2>
-  <p class="lead">Enter your home address and we will find your two U.S. senators.</p>
+  <p class="lead">Enter your home address and we will find your Democratic senator(s).</p>
   <form id="addrForm" class="panel">
     <div class="row">
       <div class="field"><label for="sFirst">First name</label><input id="sFirst" autocomplete="given-name" required></div>
@@ -194,6 +213,12 @@ footer a{color:#e6c566}
   <label class="chk"><input type="checkbox" id="consent" checked> Send a copy to MAPAC (info@mapac.org)</label>
   <div id="sendList" style="margin-top:14px"></div>
   <p class="status" id="thanks" hidden>Thank you. If you sent the copy to MAPAC, it helps us know this campaign is reaching senators.</p>
+  <div class="panel" id="donePanel" style="margin-top:16px">
+    <h3 style="font-size:1.15rem;margin-bottom:6px">I sent my letter — tell MAPAC</h3>
+    <p class="note">Clicking below does two things: it records your action in MAPAC&rsquo;s count, and it opens a pre-filled email to <strong>info@mapac.org</strong> naming the senator(s) you contacted and including your letter. This opens your email app — tap Send so MAPAC gets a copy. The page itself cannot send email on its own.</p>
+    <div class="actions"><button id="doneBtn">I sent my letter — tell MAPAC</button></div>
+    <p class="status" id="doneStatus" role="status"></p>
+  </div>
   <div class="nav"><button class="ghost" data-go="intro">Back to the campaign</button></div>
 </section>
 
@@ -267,6 +292,31 @@ function post(event, data, force){
 /* ---------- Wizard navigation ---------- */
 const FLOW = {ids:["a1","a2","a3","a4"],labels:["Your address","Your officials","Your message","Send"]};
 let S = {items:[]};
+
+/* ---------- The 56 targets (verified Nov 14, 2026) ----------
+   43 sitting senators (official senate.gov contact forms) + 12 senators-elect
+   (campaign contact page or current public office) + Mary Peltola (AK, pending —
+   race still uncalled). Senators-elect have no Senate office until Jan 3, 2027.
+   Embedded here on purpose: the live legislators feed is still the 119th
+   Congress and has no senators-elect. */
+const TARGETS=[{"n":"Mary Peltola","st":"AK","s":"pending","u":"https://marypeltola.com/contact/","k":"campaign","b":"","l":"Peltola"},{"n":"Mark Kelly","st":"AZ","s":"sitting","u":"https://www.kelly.senate.gov/contact/contact-form/","k":"senate","b":"K000377","l":"Kelly"},{"n":"Ruben Gallego","st":"AZ","s":"sitting","u":"https://www.gallego.senate.gov/contact","k":"senate","b":"G000574","l":"Gallego"},{"n":"Adam Schiff","st":"CA","s":"sitting","u":"https://www.schiff.senate.gov/contact","k":"senate","b":"S001150","l":"Schiff"},{"n":"Alex Padilla","st":"CA","s":"sitting","u":"https://www.padilla.senate.gov/contact/","k":"senate","b":"P000145","l":"Padilla"},{"n":"John Hickenlooper","st":"CO","s":"sitting","u":"https://www.hickenlooper.senate.gov/contact/","k":"senate","b":"H000273","l":"Hickenlooper"},{"n":"Michael Bennet","st":"CO","s":"sitting","u":"https://www.bennet.senate.gov/public/index.cfm/contact","k":"senate","b":"B001267","l":"Bennet"},{"n":"Christopher Murphy","st":"CT","s":"sitting","u":"https://www.murphy.senate.gov/contact","k":"senate","b":"M001169","l":"Murphy"},{"n":"Richard Blumenthal","st":"CT","s":"sitting","u":"https://www.blumenthal.senate.gov/contact/","k":"senate","b":"B001277","l":"Blumenthal"},{"n":"Christopher Coons","st":"DE","s":"sitting","u":"https://www.coons.senate.gov/contact","k":"senate","b":"C001088","l":"Coons"},{"n":"Lisa Blunt Rochester","st":"DE","s":"sitting","u":"https://www.bluntrochester.senate.gov/contact","k":"senate","b":"B001303","l":"Blunt Rochester"},{"n":"Jon Ossoff","st":"GA","s":"sitting","u":"https://www.ossoff.senate.gov/contact-us/","k":"senate","b":"O000174","l":"Ossoff"},{"n":"Raphael Warnock","st":"GA","s":"sitting","u":"https://www.warnock.senate.gov/contact/","k":"senate","b":"W000790","l":"Warnock"},{"n":"Brian Schatz","st":"HI","s":"sitting","u":"https://www.schatz.senate.gov/contact","k":"senate","b":"S001194","l":"Schatz"},{"n":"Mazie Hirono","st":"HI","s":"sitting","u":"https://www.hirono.senate.gov/contact","k":"senate","b":"H001042","l":"Hirono"},{"n":"Josh Turek","st":"IA","s":"elect","u":"https://www.legis.iowa.gov/legislators/legislator?personID=33969","k":"office","b":"","l":"Turek"},{"n":"Juliana Stratton","st":"IL","s":"elect","u":"https://ltgov.illinois.gov/contact-us.html","k":"office","b":"","l":"Stratton"},{"n":"Tammy Duckworth","st":"IL","s":"sitting","u":"https://www.duckworth.senate.gov/content/contact-senator","k":"senate","b":"D000622","l":"Duckworth"},{"n":"Adam Hamilton","st":"KS","s":"elect","u":"https://hamiltonforkansas.com","k":"campaign","b":"","l":"Hamilton"},{"n":"Edward Markey","st":"MA","s":"sitting","u":"https://www.markey.senate.gov/contact","k":"senate","b":"M000133","l":"Markey"},{"n":"Elizabeth Warren","st":"MA","s":"sitting","u":"https://www.warren.senate.gov/?p=email_senator","k":"senate","b":"W000817","l":"Warren"},{"n":"Angela Alsobrooks","st":"MD","s":"sitting","u":"https://www.alsobrooks.senate.gov/contact","k":"senate","b":"A000382","l":"Alsobrooks"},{"n":"Chris Van Hollen","st":"MD","s":"sitting","u":"https://www.vanhollen.senate.gov/contact/email","k":"senate","b":"V000128","l":"Van Hollen"},{"n":"Angus King","st":"ME","s":"sitting","u":"https://www.king.senate.gov/contact","k":"senate","b":"K000383","l":"King"},{"n":"Troy Jackson","st":"ME","s":"elect","u":"https://jacksonformaine.com/contact","k":"campaign","b":"","l":"Jackson"},{"n":"Abdul El-Sayed","st":"MI","s":"elect","u":"https://abdulforsenate.com/contact","k":"campaign","b":"","l":"El-Sayed"},{"n":"Elissa Slotkin","st":"MI","s":"sitting","u":"https://www.slotkin.senate.gov/contact","k":"senate","b":"S001208","l":"Slotkin"},{"n":"Amy Klobuchar","st":"MN","s":"sitting","u":"https://www.klobuchar.senate.gov/public/index.cfm/contact","k":"senate","b":"K000367","l":"Klobuchar"},{"n":"Peggy Flanagan","st":"MN","s":"elect","u":"https://mn.gov/governor/connect/contact-us/contact-form.jsp","k":"office","b":"","l":"Flanagan"},{"n":"Scott Colom","st":"MS","s":"elect","u":"https://scottcolom.com","k":"campaign","b":"","l":"Colom"},{"n":"Roy Cooper","st":"NC","s":"elect","u":"https://roycooper.com/contact/","k":"campaign","b":"","l":"Cooper"},{"n":"Chris Pappas","st":"NH","s":"elect","u":"https://chrispappas.org/contact/","k":"campaign","b":"P000614","l":"Pappas"},{"n":"Margaret Hassan","st":"NH","s":"sitting","u":"https://www.hassan.senate.gov/content/contact-senator","k":"senate","b":"H001076","l":"Hassan"},{"n":"Andy Kim","st":"NJ","s":"sitting","u":"https://www.kim.senate.gov/contact","k":"senate","b":"K000394","l":"Kim"},{"n":"Cory Booker","st":"NJ","s":"sitting","u":"https://www.booker.senate.gov/?p=contact","k":"senate","b":"B001288","l":"Booker"},{"n":"Ben Luj\u00e1n","st":"NM","s":"sitting","u":"https://www.lujan.senate.gov/contact/","k":"senate","b":"L000570","l":"Luj\u00e1n"},{"n":"Martin Heinrich","st":"NM","s":"sitting","u":"https://www.heinrich.senate.gov/contact","k":"senate","b":"H001046","l":"Heinrich"},{"n":"Catherine Cortez Masto","st":"NV","s":"sitting","u":"https://www.cortezmasto.senate.gov/contact","k":"senate","b":"C001113","l":"Cortez Masto"},{"n":"Jacky Rosen","st":"NV","s":"sitting","u":"https://www.rosen.senate.gov/contact_jacky","k":"senate","b":"R000608","l":"Rosen"},{"n":"Charles Schumer","st":"NY","s":"sitting","u":"https://www.schumer.senate.gov/contact/email-chuck","k":"senate","b":"S000148","l":"Schumer"},{"n":"Kirsten Gillibrand","st":"NY","s":"sitting","u":"https://www.gillibrand.senate.gov/contact/email-me","k":"senate","b":"G000555","l":"Gillibrand"},{"n":"Sherrod Brown","st":"OH","s":"elect","u":"https://www.sherrodbrown.com","k":"campaign","b":"B000944","l":"Brown"},{"n":"Jeff Merkley","st":"OR","s":"sitting","u":"https://www.merkley.senate.gov/contact/","k":"senate","b":"M001176","l":"Merkley"},{"n":"Ron Wyden","st":"OR","s":"sitting","u":"https://www.wyden.senate.gov/contact/","k":"senate","b":"W000779","l":"Wyden"},{"n":"John Fetterman","st":"PA","s":"sitting","u":"https://www.fetterman.senate.gov/contact/","k":"senate","b":"F000479","l":"Fetterman"},{"n":"Jack Reed","st":"RI","s":"sitting","u":"https://www.reed.senate.gov/contact/","k":"senate","b":"R000122","l":"Reed"},{"n":"Sheldon Whitehouse","st":"RI","s":"sitting","u":"https://www.whitehouse.senate.gov/contact/email-sheldon","k":"senate","b":"W000802","l":"Whitehouse"},{"n":"Annie Andrews","st":"SC","s":"elect","u":"https://drannieandrews.com","k":"campaign","b":"","l":"Andrews"},{"n":"James Talarico","st":"TX","s":"elect","u":"https://house.texas.gov/members/member-page/?district=50","k":"office","b":"","l":"Talarico"},{"n":"Mark Warner","st":"VA","s":"sitting","u":"https://www.warner.senate.gov/public/index.cfm?p=Contact","k":"senate","b":"W000805","l":"Warner"},{"n":"Tim Kaine","st":"VA","s":"sitting","u":"https://www.kaine.senate.gov/contact","k":"senate","b":"K000384","l":"Kaine"},{"n":"Bernard Sanders","st":"VT","s":"sitting","u":"https://www.sanders.senate.gov/contact/","k":"senate","b":"S000033","l":"Sanders"},{"n":"Peter Welch","st":"VT","s":"sitting","u":"https://www.welch.senate.gov/email-peter/","k":"senate","b":"W000800","l":"Welch"},{"n":"Maria Cantwell","st":"WA","s":"sitting","u":"https://www.cantwell.senate.gov/public/index.cfm/email-maria","k":"senate","b":"C000127","l":"Cantwell"},{"n":"Patty Murray","st":"WA","s":"sitting","u":"https://www.murray.senate.gov/write-to-patty/","k":"senate","b":"M001111","l":"Murray"},{"n":"Tammy Baldwin","st":"WI","s":"sitting","u":"https://www.baldwin.senate.gov/feedback","k":"senate","b":"B001230","l":"Baldwin"}];
+function targetBadge(t){return t.s==="sitting"?'<span class="badge">Sitting</span>':t.s==="elect"?'<span class="badge elect">Senator-elect</span>':'<span class="badge pending">Pending</span>';}
+function kindLabel(t){return t.k==="senate"?"Senate contact form":t.k==="campaign"?"Campaign contact page":"Current office contact page";}
+function letterForTarget(t){
+  const name=S.name||"[Your name]", city=(S.geo&&S.geo.city)||"[Your city]";
+  return CAMP.m.senator.replaceAll("{title}","Senator").replaceAll("{last}",t.l).replaceAll("{office}","U.S. Senate")
+    .replaceAll("{name}",name).replaceAll("{city}",city).replace(/ ,/g,",");
+}
+function renderTargets(){
+  $("targetList").innerHTML=TARGETS.map((t,i)=>`<div class="trow"><span class="nm">${esc(t.n)}</span><span class="st">${esc(t.st)}</span>${targetBadge(t)}<span class="kind">${kindLabel(t)}</span><span class="sp"></span><a class="clink" href="${esc(t.u)}" target="_blank" rel="noopener">Contact form &nearr;</a><button data-tcopy="${i}">Copy letter</button></div>`).join("");
+}
+$("targetList").addEventListener("click",e=>{
+  const b=e.target.closest("[data-tcopy]"); if(!b) return;
+  const t=TARGETS[+b.dataset.tcopy];
+  copy(CAMP.s+"\n\n"+letterForTarget(t),"Letter copied — paste it into the contact form.");
+  post("copy_letter",{senator:t.n,state:t.st,campaign:CAMP.n});
+});
+renderTargets();
 function go(id){
   document.querySelectorAll("main section.step").forEach(s=>s.hidden = s.id!==id);
   const st=$("steps");
@@ -346,20 +396,13 @@ async function geocode(addr){
   return { state:m.addressComponents.state, city:titleCase(m.addressComponents.city), lat:m.coordinates.y, lng:m.coordinates.x,
     cd:f(/Congressional Districts/), place:(f(/Incorporated Places/)?.NAME||"").toLowerCase(), county:(f(/^Counties/)?.NAME||"").toLowerCase() };
 }
-let legCache=null;
-async function legislators(){
-  if(legCache) return legCache;
-  const r=await fetch("https://unitedstates.github.io/congress-legislators/legislators-current.json");
-  if(!r.ok) throw new Error("legislators"); return legCache=await r.json();
-}
 const mk=(name,last,email,url,phone,detail,manual)=>({office:"U.S. Senate",sal:"Senator",name,last,email:email||"",url:url||"",phone:phone||"",detail:detail||"",manual:!!manual,on:true});
-async function resolve(geo){
-  const all=await legislators(); const found=[];
-  for(const p of all){
-    const t=p.terms.at(-1); if(t.type!=="sen" || t.state!==geo.state) continue;
-    found.push(mk(p.name.official_full||(p.name.first+" "+p.name.last),p.name.last,"",t.contact_form||t.url,t.phone,"U.S. Senate"));
-  }
-  if(!found.length) found.push(mk("(Add contact)","",null,null,null,"We could not pull your senators automatically.",true));
+function resolve(geo){
+  const found=TARGETS.filter(t=>t.st===geo.state).map(t=>{
+    const detail=t.s==="sitting"?"Sitting senator":t.s==="elect"?"Senator-elect — takes office January 3, 2027":"Pending — Alaska's race is still uncalled";
+    return mk(t.n,t.l,"",t.u,"",detail,false);
+  });
+  if(!found.length) found.push(mk("(Add contact)","",null,null,null,"Your state has no Democratic senator in this vote. Pick any senator from the list above.",true));
   return found;
 }
 $("addrForm").addEventListener("submit",async e=>{
@@ -369,7 +412,7 @@ $("addrForm").addEventListener("submit",async e=>{
     const address=addressFromForm(), geo=await geocode(address);
     Object.assign(S,{geo,name:supporterName(),email:$("sEmail").value.trim(),phone:$("sPhone").value.trim(),address,incAddr:$("incAddr").checked});
     st.textContent="Finding your senators…";
-    S.items=await resolve(geo);
+    S.items=resolve(geo);
     post("lookup",{state:geo.state,campaign:CAMP.n});
     renderOfficials(); go("a2"); st.textContent="";
   }catch(err){
@@ -440,6 +483,17 @@ $("a4").addEventListener("click",e=>{
     post("supporter",{name:S.name,email:S.email,phone:S.phone,address:S.address,state:S.geo.state,campaign:CAMP.n,offices:"senator"},true); }
   $("thanks").hidden=false;
 });
+$("doneBtn").onclick=()=>{
+  const names=S.sel.map(o=>o.name).join(", ");
+  const letters=S.sel.map(o=>o.msg).join("\n\n---\n\n");
+  post("action_taken",{campaign:CAMP.n,state:S.geo.state,senators:names,offices:"senator"});
+  if(S.consent&&!S.logged){ S.logged=true;
+    post("supporter",{name:S.name,email:S.email,phone:S.phone,address:S.address,state:S.geo.state,campaign:CAMP.n,offices:"senator"},true); }
+  const body="I contacted "+names+" about supporting Chris Van Hollen for Senate Majority Leader.\n\n"+letters;
+  location.href=mt(CONFIG.mapacEmail,"Van Hollen action taken",body);
+  $("doneStatus").textContent="Your email app should have opened with the message ready — tap Send.";
+  $("thanks").hidden=false;
+};
 
 /* ---------- Share this page ---------- */
 function pageUrl(){ return location.href.split("?")[0].split("#")[0]; }
