@@ -58,6 +58,9 @@ button.ghost:hover,.btn.ghost:hover{background:var(--gold);color:var(--navy)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
 .chip{font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;color:var(--navy);background:#f2ecd8;border:1px solid var(--gold);border-radius:999px;padding:5px 12px}
 .videos{margin:14px 0 4px}.videos h4{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin:0 0 6px;color:var(--navy)}.videos ul{margin:0;padding-left:20px;font-size:15px}.videos li{margin-bottom:4px}
+.campaign-spotlight{display:grid;grid-template-columns:minmax(180px,260px) minmax(0,1fr);gap:20px;align-items:start}
+.campaign-spotlight .cardimg{max-height:300px}
+.card-media .card-credit{margin:7px 0 0}
 .campaign-spotlight{border:2px solid var(--gold);animation:spotIn .5s ease-out,spotPulse 2.4s ease-in-out .5s infinite}
 @keyframes spotIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spotPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.55)}50%{box-shadow:0 0 0 9px rgba(201,162,39,0)}}
@@ -70,7 +73,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.85);padding:26px 0 40px;fo
 footer a{color:#e6c566}
 [hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.campaign-spotlight{animation:none}}
-@media(max-width:760px){.hero{padding:28px 0 22px}}
+@media(max-width:760px){.hero{padding:28px 0 22px}.campaign-spotlight{grid-template-columns:1fr}.campaign-spotlight .cardimg{max-height:320px}}
 </style>
 </head>
 <body>
@@ -203,13 +206,13 @@ function render(list){
     const imageSource=c.imageSource||media.imageSource;
     const img=image?`<img class="cardimg" src="${esc(image)}" alt="${esc(imageAlt)}" loading="lazy" decoding="async">`:`<img class="cardimg" src="share/${esc(c.id)}.svg" alt="" onerror="this.remove()">`;
     const credit=imageCredit?`<p class="card-credit">${imageSource?`<a href="${esc(imageSource)}" target="_blank" rel="noopener">Photo source</a> · `:""}${esc(imageCredit)}</p>`:"";
-    return `<article class="panel campaign-spotlight">${img}${credit}
-      <h3>${esc(c.n)}</h3>
+    return `<article class="panel campaign-spotlight"><div class="card-media">${img}${credit}</div>
+      <div class="card-body"><h3>${esc(c.n)}</h3>
       <p class="meta">${c.published?"Published "+fmtDate(c.published):""}${offices?" &middot; To: "+esc(offices):""}</p>
       <p>${esc(c.sum||"")}</p>
       ${chips?`<div class="chips">${chips}</div>`:""}
       ${videosBlock}
-      <div class="actions"><a class="btn" href="${esc(url)}" data-open="${esc(c.id)}">Take action &rarr;</a><button class="ghost" data-copy="${esc(absUrl(url))}" data-camp="${esc(c.id)}">Copy link</button></div>
+      <div class="actions"><a class="btn" href="${esc(url)}" data-open="${esc(c.id)}">Take action &rarr;</a><button class="ghost" data-copy="${esc(absUrl(url))}" data-camp="${esc(c.id)}">Copy link</button></div></div>
     </article>`;
   }).join("");
 }
