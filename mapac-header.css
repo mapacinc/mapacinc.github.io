@@ -257,6 +257,10 @@ header.site .mapac-cta:hover {
 }
 
 @media (max-width: 900px) {
+  :root {
+    scroll-padding-top: 132px;
+  }
+
   .mapac-util .mapac-wrap {
     justify-content: center;
     text-align: center;
@@ -267,59 +271,48 @@ header.site .mapac-cta:hover {
   }
 
   .mapac-bar {
+    flex-wrap: wrap;
     gap: 12px;
+    padding-bottom: 10px;
   }
 
   .mapac-burger {
-    display: inline-flex;
+    display: none;
   }
 
   header.site nav.mapac-nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    max-height: 0;
+    position: static;
+    flex: 1 1 100%;
+    max-height: none;
     margin: 0;
-    overflow: hidden;
-    visibility: hidden;
-    border-bottom: 1px solid var(--mapac-line);
-    background: #fff;
-    box-shadow: 0 14px 24px rgba(18, 32, 59, 0.14);
-    transition: max-height 0.25s ease, visibility 0.25s;
-  }
-
-  header.site nav.mapac-nav.open {
-    max-height: 80vh;
+    overflow-x: auto;
+    overflow-y: hidden;
     visibility: visible;
+    border-top: 1px solid var(--mapac-line);
+    border-bottom: 0;
+    background: transparent;
+    box-shadow: none;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
 
   header.site nav.mapac-nav ul {
-    flex-direction: column;
-    padding: 6px 20px 16px;
-    gap: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 8px 0 0;
+    gap: 2px;
   }
 
   header.site nav.mapac-nav li {
-    border-bottom: 1px solid #eee;
+    flex: none;
+    border-bottom: 0;
   }
 
   header.site nav.mapac-nav a {
-    padding: 16px 4px;
-    border-radius: 0;
-    font-size: 17px;
-  }
-
-  header.site nav.mapac-nav a::after {
-    right: auto;
-    bottom: 9px;
-    left: 4px;
-    width: 36px;
-  }
-
-  header.site nav.mapac-nav a:hover,
-  header.site nav.mapac-nav a.active {
-    background: transparent;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    white-space: nowrap;
   }
 
   header.site .mapac-cta {
