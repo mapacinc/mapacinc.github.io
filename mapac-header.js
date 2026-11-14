@@ -1,3 +1,14 @@
+/* Google Tag Manager (GTM-NFV8NB7T) — loaded here because index.html (5.4 MB) is too large for the push tool's request limit; the other pages carry the same snippet in <head>. */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+(function () {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-NFV8NB7T';
+  document.head.appendChild(s);
+})();
+
 (function () {
   var burger = document.getElementById('mapacBurger');
   var menu = document.getElementById('mapacMenu');
