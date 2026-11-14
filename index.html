@@ -96,6 +96,13 @@ h2.sec{font-size:28px;margin:0 0 10px} h3{font-size:20px;margin:22px 0 6px}
 .winner-card p{margin:4px 0;font-size:13px}
 .winner-credit{font-family:Arial,Helvetica,sans-serif;color:var(--mut);font-size:11px!important;line-height:1.4}
 .winner-credit a{color:var(--mut)}
+.campaign-spotlight{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px, 320px);gap:18px;align-items:center;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0 24px;overflow:hidden}
+.campaign-spotlight-copy{min-width:0}
+.campaign-spotlight img{display:block;width:100%;height:260px;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#e6e9ef}
+.campaign-spotlight h3{margin:8px 0 10px;font-size:30px}
+.campaign-spotlight p{margin:8px 0}
+.campaign-spotlight-links{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:14px}
+.campaign-spotlight-links a{font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .stsec{margin:26px 0} .stsec h3{border-bottom:1px solid var(--line);padding-bottom:6px}
 .raceblock{margin:16px 0} .raceblock h4{margin:0 0 8px;font-size:17px}
@@ -182,6 +189,23 @@ a.sumrow:hover{color:var(--bg2)}
       <section class="election-summary" id="homeSummary" aria-labelledby="results-summary-heading">
         <p class="kicker">2026 U.S. Midterms · Reported results</p>
         <h2 class="sec" id="results-summary-heading">2026 Election Results Summary</h2>
+        <div class="campaign-spotlight">
+          <div class="campaign-spotlight-copy">
+            <p class="kicker">Featured campaign</p>
+            <h3>Chris Van Hollen</h3>
+            <p>MAPAC highlights Chris Van Hollen as a leading campaign to prioritize on the 2026 calendar, alongside other endorsed and opposed campaigns in the broader field.</p>
+            <p>Recent campaign coverage and interviews are a strong signal of the national conversation around his work, especially on foreign policy, accountability, and the issues facing Muslim communities.</p>
+            <div class="btnrow">
+              <a class="btn" href="https://www.chrisvanhollen.com/" target="_blank" rel="noopener noreferrer">Campaign site</a>
+              <a class="btn ghost" href="https://www.youtube.com/results?search_query=Chris+Van+Hollen+interview" target="_blank" rel="noopener noreferrer">Recent interviews</a>
+            </div>
+            <ul class="campaign-spotlight-links">
+              <li><a href="https://www.youtube.com/results?search_query=Chris+Van+Hollen+interview" target="_blank" rel="noopener noreferrer">YouTube interviews</a></li>
+              <li><a href="https://www.google.com/search?q=Chris+Van+Hollen+recent+interview" target="_blank" rel="noopener noreferrer">Google News interviews</a></li>
+            </ul>
+          </div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chris_Van_Hollen_official_portrait_115th_Congress.jpg/800px-Chris_Van_Hollen_official_portrait_115th_Congress.jpg" alt="Chris Van Hollen official portrait" loading="lazy" decoding="async">
+        </div>
         <h3>Muslim candidates elected to Congress</h3>
         <ul class="winner-grid" aria-label="Eight Muslim congressional winners named by CAIR California">
           <li class="winner-card">
@@ -339,6 +363,23 @@ a.sumrow:hover{color:var(--bg2)}
   <section class="page" id="take-action">
     <h2 class="sec">Take Action</h2>
     <p class="lead">Elections are one night. Accountability is every day. Here are five things you can do right now.</p>
+    <div class="campaign-spotlight">
+      <div class="campaign-spotlight-copy">
+        <p class="kicker">Featured campaign</p>
+        <h3>Chris Van Hollen</h3>
+        <p>Chris Van Hollen is featured at the top of the action list, with other campaigns and community actions listed below.</p>
+        <p>Use the campaign links to follow his current public messaging, recent interviews, and policy updates.</p>
+        <div class="btnrow">
+          <a class="btn" href="https://www.chrisvanhollen.com/" target="_blank" rel="noopener noreferrer">Campaign site</a>
+          <a class="btn ghost" href="https://www.youtube.com/results?search_query=Chris+Van+Hollen+interview" target="_blank" rel="noopener noreferrer">Recent interviews</a>
+        </div>
+        <ul class="campaign-spotlight-links">
+          <li><a href="https://www.youtube.com/results?search_query=Chris+Van+Hollen+interview" target="_blank" rel="noopener noreferrer">Recent interviews</a></li>
+          <li><a href="https://www.google.com/search?q=Chris+Van+Hollen+recent+interview" target="_blank" rel="noopener noreferrer">Interview archive</a></li>
+        </ul>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chris_Van_Hollen_official_portrait_115th_Congress.jpg/800px-Chris_Van_Hollen_official_portrait_115th_Congress.jpg" alt="Chris Van Hollen campaign portrait" loading="lazy" decoding="async">
+    </div>
     <div class="cards">
       <div class="card"><h3>1. See the 2026 results</h3><p>See who won in your state and how every endorsed and opposed candidate did — including the 11 Muslim candidates for Congress.</p><p><a class="btn" href="#/results">See results</a></p></div>
       <div class="card"><h3>2. Contact your representatives</h3><p>Newly elected members of Congress take office in January. Tell yours where you stand: end military aid fueling the war in Gaza, protect the International Criminal Court from sanctions, and defend the right to boycott.</p><p><a href="https://www.house.gov/representatives/find-your-representative">Find your Representative &rarr;</a><br><a href="https://www.senate.gov/senators/senators-contact.htm">Contact your Senators &rarr;</a></p></div>
