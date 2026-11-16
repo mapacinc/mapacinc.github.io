@@ -102,10 +102,10 @@ button:disabled{opacity:.55;cursor:wait}
 .cmp-caution h3{color:var(--navy);font-size:1.1rem;margin:0 0 6px}
 .cmp-caution p{margin:0;font-size:15px;line-height:1.5}
 .cmp-cta{background:var(--navy);color:#fff;border-radius:12px;padding:20px;margin-top:16px;text-align:center}
-@keyframes voiceGlow{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.55)}50%{box-shadow:0 0 0 12px rgba(201,162,39,0)}}
-.voice-pulse{animation:voiceGlow 2.6s ease-in-out infinite}
-@keyframes voiceBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.voice-pulse .voice-btn{animation:voiceBtn 2.6s ease-in-out infinite}
+@keyframes voiceGlow{0%{box-shadow:0 0 0 3px rgba(201,162,39,.9),0 0 18px rgba(201,162,39,.5)}70%{box-shadow:0 0 0 14px rgba(201,162,39,0),0 0 18px rgba(201,162,39,0)}100%{box-shadow:0 0 0 14px rgba(201,162,39,0),0 0 18px rgba(201,162,39,0)}}
+.voice-pulse{animation:voiceGlow 2.2s ease-out infinite}
+@keyframes voiceBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.voice-pulse .voice-btn{animation:voiceBtn 2.2s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.voice-pulse,.voice-pulse .voice-btn{animation:none}}
 .cmp-scroll{overflow-x:auto;margin-top:16px}
 .cmp-table{width:100%;border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;min-width:560px}

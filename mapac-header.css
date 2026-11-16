@@ -375,8 +375,8 @@ header.site .mapac-cta:hover {
 .home-compare .cmp-table tbody tr:nth-child(even) td{background:#fbfcfe}
 .home-compare .cmp-caution{background:#fdf3cd;border:1px solid var(--mapac-gold);border-radius:12px;padding:16px;margin-top:16px}
 .home-compare .cmp-caution h3{margin:0 0 8px;color:var(--mapac-navy)}
-@keyframes voiceGlow{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.55)}50%{box-shadow:0 0 0 12px rgba(201,162,39,0)}}
-.voice-pulse{animation:voiceGlow 2.6s ease-in-out infinite}
-@keyframes voiceBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.voice-pulse .voice-btn{animation:voiceBtn 2.6s ease-in-out infinite}
+@keyframes voiceGlow{0%{box-shadow:0 0 0 3px rgba(201,162,39,.9),0 0 18px rgba(201,162,39,.5)}70%{box-shadow:0 0 0 14px rgba(201,162,39,0),0 0 18px rgba(201,162,39,0)}100%{box-shadow:0 0 0 14px rgba(201,162,39,0),0 0 18px rgba(201,162,39,0)}}
+.voice-pulse{animation:voiceGlow 2.2s ease-out infinite}
+@keyframes voiceBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.voice-pulse .voice-btn{animation:voiceBtn 2.2s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.voice-pulse,.voice-pulse .voice-btn{animation:none}}
