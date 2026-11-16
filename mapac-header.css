@@ -343,3 +343,40 @@ header.site .mapac-cta:hover {
     transition: none;
   }
 }
+
+/* Van Hollen campaign spotlight — injected at the top of the Home view by mapac-header.js */
+.home-voice{margin:0 0 22px}
+.home-voice .cmp-cta{background:var(--mapac-navy);color:#fff;border-radius:12px;padding:20px;text-align:center}
+.home-voice .cmp-cta h3{color:#fff;margin:0 0 8px;font:700 20px Arial,Helvetica,sans-serif}
+.home-voice .cmp-cta p{margin:8px 0;color:#d8dee9}
+.home-voice .cmp-cta a{color:var(--mapac-gold-soft)}
+.home-voice .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px}
+.home-voice .btn{display:inline-block;min-height:44px;padding:11px 22px;border:2px solid var(--mapac-gold);border-radius:999px;background:var(--mapac-gold);color:var(--mapac-navy);font:700 15px Arial,Helvetica,sans-serif;text-decoration:none}
+.home-voice .btn:hover{background:var(--mapac-gold-dark);border-color:var(--mapac-gold-dark);color:#fff}
+.home-compare{margin:0 0 28px}
+.home-compare .compare-banner{background:var(--mapac-navy);color:#fff;border-radius:12px;padding:20px;text-align:center}
+.home-compare .compare-banner h2{color:#fff;margin:0 0 8px;font-size:24px;line-height:1.25}
+.home-compare .compare-banner .gold{color:var(--mapac-gold)}
+.home-compare .compare-banner p{color:#d8dee9;margin:8px 0}
+.home-compare .compare-vote{display:inline-block;margin-top:8px;padding:6px 14px;border-radius:999px;background:var(--mapac-gold);color:var(--mapac-navy);font:700 13px Arial,Helvetica,sans-serif}
+.home-compare .lead{margin-top:16px;color:var(--mapac-navy);font:16px/1.5 Arial,Helvetica,sans-serif}
+.home-compare .cmp-scroll{overflow-x:auto;margin-top:16px}
+.home-compare .cmp-table{width:100%;min-width:560px;border-collapse:collapse;font-family:Arial,Helvetica,sans-serif}
+.home-compare .cmp-table th,.home-compare .cmp-table td{border:1px solid var(--mapac-line);padding:12px 14px;text-align:left;vertical-align:top;font-size:15px;line-height:1.5}
+.home-compare .cmp-table thead th{background:var(--mapac-navy);color:#fff;text-align:center;padding:0 0 14px;overflow:hidden}
+.home-compare .cmp-table thead th.cmp-issue-h{background:#fff;color:var(--mapac-navy);vertical-align:bottom;padding-bottom:14px}
+.home-compare .cmp-table thead h3{color:#fff;margin:10px 0 2px;font-size:17px}
+.home-compare .cmp-table thead p{color:#d8dee9;margin:0;font-size:13px}
+.home-compare .cmp-photo{height:150px;background:#eef1f5;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.home-compare .cmp-photo img{width:auto;height:100%;max-width:100%;object-fit:cover;object-position:center;display:block}
+.home-compare .cmp-table tbody th{width:130px;background:#f4f6f8;color:var(--mapac-navy);font-size:14px;text-align:center}
+.home-compare .cmp-table tbody th .cmp-ic{margin:0 auto 6px}
+.home-compare .cmp-ic{flex:none;width:34px;height:34px;border-radius:50%;background:var(--mapac-navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+.home-compare .cmp-table tbody tr:nth-child(even) td{background:#fbfcfe}
+.home-compare .cmp-caution{background:#fdf3cd;border:1px solid var(--mapac-gold);border-radius:12px;padding:16px;margin-top:16px}
+.home-compare .cmp-caution h3{margin:0 0 8px;color:var(--mapac-navy)}
+@keyframes voiceGlow{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.55)}50%{box-shadow:0 0 0 12px rgba(201,162,39,0)}}
+.voice-pulse{animation:voiceGlow 2.6s ease-in-out infinite}
+@keyframes voiceBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.voice-pulse .voice-btn{animation:voiceBtn 2.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.voice-pulse,.voice-pulse .voice-btn{animation:none}}
