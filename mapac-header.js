@@ -55,7 +55,16 @@ gtag('js', new Date());
 (function () {
   var home = document.getElementById('home');
   if (!home || document.getElementById('homeVoice')) return;
-  home.insertAdjacentHTML('afterbegin', `<section class="home-voice" id="homeVoice" aria-labelledby="home-voice-title">
+  home.insertAdjacentHTML('afterbegin', `<style>
+.home-voice .cmp-cta a.btn{color:#1b2a4a}
+.home-voice .cmp-cta a.btn:hover{color:#fff}
+@keyframes voiceGlow{0%{box-shadow:0 0 0 3px rgba(201,162,39,.9),0 0 18px rgba(201,162,39,.5)}70%{box-shadow:0 0 0 14px rgba(201,162,39,0),0 0 18px rgba(201,162,39,0)}100%{box-shadow:0 0 0 14px rgba(201,162,39,0),0 0 18px rgba(201,162,39,0)}}
+.voice-pulse{animation:voiceGlow 2.2s ease-out infinite}
+@keyframes voiceBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.voice-pulse .voice-btn{animation:voiceBtn 2.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.voice-pulse,.voice-pulse .voice-btn{animation:none}}
+</style>
+<section class="home-voice" id="homeVoice" aria-labelledby="home-voice-title">
   <div class="cmp-cta voice-pulse">
     <h3 id="home-voice-title">MAKE YOUR VOICE HEARD</h3>
     <p>Contact your U.S. senators. Ask questions, review the public record, and share your views.</p>
