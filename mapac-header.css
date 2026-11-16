@@ -353,6 +353,8 @@ header.site .mapac-cta:hover {
 .home-voice .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px}
 .home-voice .btn{display:inline-block;min-height:44px;padding:11px 22px;border:2px solid var(--mapac-gold);border-radius:999px;background:var(--mapac-gold);color:var(--mapac-navy);font:700 15px Arial,Helvetica,sans-serif;text-decoration:none}
 .home-voice .btn:hover{background:var(--mapac-gold-dark);border-color:var(--mapac-gold-dark);color:#fff}
+.home-voice .cmp-cta a.btn{color:var(--mapac-navy)}
+.home-voice .cmp-cta a.btn:hover{color:#fff}
 .home-compare{margin:0 0 28px}
 .home-compare .compare-banner{background:var(--mapac-navy);color:#fff;border-radius:12px;padding:20px;text-align:center}
 .home-compare .compare-banner h2{color:#fff;margin:0 0 8px;font-size:24px;line-height:1.25}
