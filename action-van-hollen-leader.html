@@ -308,6 +308,8 @@ footer a{color:#e6c566}
     <div class="panel" id="messagePreview" hidden>
       <h2 style="font-size:1.5rem;margin-bottom:10px">Your campaign message</h2>
       <p class="note">This is the message your senators will receive. You can edit it before sending.</p>
+      <p style="font-weight:700;margin:0 0 8px" id="letterSubject"></p>
+      <p class="note" id="previewTo" style="margin:0 0 8px"></p>
       <div class="letter" id="letterShow"></div>
     </div>
   </form>
@@ -471,15 +473,26 @@ function supporterName(){
   const middle=$("sMiddle").value.trim();
   return [$("sFirst").value.trim(),middle?middle.replace(/\.$/,"")+".":"",$("sLast").value.trim()].filter(Boolean).join(" ");
 }
+function stateSenators(){
+  const st=$("sState").value.trim().toUpperCase();
+  return st?TARGETS.filter(t=>t.st===st):[];
+}
 function updateMessagePreview(){
   const preview=$("messagePreview");
-  if(!$("addrForm").checkValidity()){
-    preview.hidden=true;
-    return;
-  }
-  $("letterShow").textContent=CAMP.m.senator.replaceAll("{title} {last}","Senator")
-    .replaceAll("{title}","Senator").replaceAll("{last}","").replaceAll("{office}","U.S. Senator")
-    .replaceAll("{name}",supporterName()).replaceAll("{city}",$("sCity").value.trim())
+  const name=supporterName(), city=$("sCity").value.trim();
+  // Show the letter as soon as there is a name or a city to put in it — no
+  // need to wait for the whole form. Missing bits show as placeholders, and
+  // the letter is addressed to the visitor's own senator(s) once the ZIP
+  // has filled in the state.
+  if(!name && !city){ preview.hidden=true; return; }
+  const sens=stateSenators(), first=sens[0];
+  const salutation=first?("Senator "+first.l):"Senator";
+  $("letterSubject").textContent="Subject: "+CAMP.s;
+  $("previewTo").textContent=sens.length?("To: "+(sens.length>1?"Senators ":"Senator ")+sens.map(s=>s.n).join(" and ")+" ("+sens[0].st+")"):"";
+  $("letterShow").textContent=CAMP.m.senator
+    .replaceAll("{title} {last}",salutation)
+    .replaceAll("{title}","Senator").replaceAll("{last}",first?first.l:"").replaceAll("{office}","U.S. Senate")
+    .replaceAll("{name}",name||"[Your name]").replaceAll("{city}",city||"[Your city]")
     .replace(/ {2,}/g," ").replace(/Dear\s+,/g,"Dear Senator,");
   preview.hidden=false;
 }
@@ -499,10 +512,14 @@ async function lookupZip(zip){
     if(request!==zipRequest || $("sZip").value!==zip) return;
     if(!place || !place["place name"] || !place["state abbreviation"]) throw new Error("zip");
     city.value=place["place name"]; state.value=place["state abbreviation"];
+    city.readOnly=true; state.readOnly=true;
     status.textContent="City and state filled in.";
   }catch(error){
     if(request!==zipRequest) return;
-    status.textContent="We couldn't find that ZIP code. Check it and try again.";
+    /* ZIP lookup failed: unlock city and state so the visitor can type them
+       in by hand instead of being stuck on empty read-only fields. */
+    city.readOnly=false; state.readOnly=false;
+    status.textContent="We couldn't find that ZIP code — please type your city and state.";
   }
   updateMessagePreview();
 }
