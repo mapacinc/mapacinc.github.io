@@ -259,7 +259,7 @@ footer a{color:#e6c566}
     <div id="details"></div>
     <ul class="keypts" id="keypts" style="margin-top:14px"></ul>
   </div>
-  <div class="actions"><button id="startBtn">Start &mdash; find my senators</button></div>
+  
   <p class="note" style="margin-top:14px">A note on timing: the list below covers all 56 Democratic senators voting on December 1 — including the newly elected senators, who take office January 3, 2027. Alaska&rsquo;s race is still uncalled; Mary Peltola is listed as pending.</p>
 </section>
 
@@ -511,7 +511,7 @@ function go(id){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-go]"); if(b) go(b.dataset.go); });
-$("startBtn").onclick=()=>go("a1");
+
 
 /* ---------- Render campaign content ---------- */
 $("statRow").innerHTML = CAMP.st.map(s=>`<div class="panel"><div class="statnum">${esc(s.v)}</div><div>${esc(s.l)}</div></div>`).join("");
